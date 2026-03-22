@@ -13,17 +13,17 @@ public class UsuarioBean {
     private String nome;
     private String usuario;
     private String senha;
-    private boolean admim;
+    private boolean Admin;
 
     public UsuarioBean() {
     }
 
-    public UsuarioBean(int id, String nome, String usuario, String senha, boolean admim) {
+    public UsuarioBean(int id, String nome, String usuario, String senha, boolean Admin) {
         this.id = id;
         this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
-        this.admim = admim;
+        this.Admin = Admin;
     }
 
     public int getId() {
@@ -58,12 +58,12 @@ public class UsuarioBean {
         this.senha = senha;
     }
 
-    public boolean isAdmim() {
-        return admim;
+    public boolean isAdmin() {
+        return Admin;
     }
 
-    public void setAdmim(boolean admim) {
-        this.admim = admim;
+    public void setAdmin(boolean Admin) {
+        this.Admin = Admin;
     }
     
     

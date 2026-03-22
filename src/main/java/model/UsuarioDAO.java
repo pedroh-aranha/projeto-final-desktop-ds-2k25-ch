@@ -51,7 +51,7 @@ public class UsuarioDAO {
             user.setNome(rs.getString("nome"));
             user.setUsuario(rs.getString("usuario"));
             user.setSenha(rs.getString("senha"));
-            user.setAdmim(rs.getBoolean("admin"));
+            user.setAdmin(rs.getBoolean("admin"));
               
               
             }

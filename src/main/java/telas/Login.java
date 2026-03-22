@@ -38,8 +38,6 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         acessar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        cadastrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         senhalg = new javax.swing.JPasswordField();
 
@@ -49,7 +47,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        usuariolg.setBackground(new java.awt.Color(255, 255, 255));
         usuariolg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuariolgActionPerformed(evt);
@@ -73,23 +70,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("crie uma conta:");
-
-        cadastrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cadastrar.setForeground(new java.awt.Color(255, 51, 51));
-        cadastrar.setText("aqui");
-        cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("         login");
 
-        senhalg.setBackground(new java.awt.Color(255, 255, 255));
         senhalg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 senhalgActionPerformed(evt);
@@ -115,11 +99,6 @@ public class Login extends javax.swing.JFrame {
                         .addGap(390, 390, 390)
                         .addComponent(acessar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(350, 350, 350)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cadastrar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(274, 274, 274)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -132,7 +111,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -144,11 +123,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(senhalg, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(acessar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cadastrar))
-                .addGap(140, 140, 140))
+                .addGap(173, 173, 173))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,12 +164,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_acessarActionPerformed
-
-    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
-        // TODO add your handling code here:
-        new Cadastro().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_cadastrarActionPerformed
 
     private void senhalgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhalgActionPerformed
         // TODO add your handling code here:
@@ -237,11 +206,9 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acessar;
-    private javax.swing.JButton cadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField senhalg;

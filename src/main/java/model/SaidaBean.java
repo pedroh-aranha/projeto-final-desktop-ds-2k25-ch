@@ -8,7 +8,7 @@ package model;
  *
  * @author Aluno
  */
-public class Saida {
+public class SaidaBean {
     private int id;
     private int qmbaixa;
     private String data;
@@ -18,10 +18,10 @@ public class Saida {
     private String nome;
     private int qntde;
 
-    public Saida() {
+    public SaidaBean() {
     }
 
-    public Saida(int id, int qmbaixa, String data, String tipoveiculo, String placa, int cod, String nome, int qntde) {
+    public SaidaBean(int id, int qmbaixa, String data, String tipoveiculo, String placa, int cod, String nome, int qntde) {
         this.id = id;
         this.qmbaixa = qmbaixa;
         this.data = data;

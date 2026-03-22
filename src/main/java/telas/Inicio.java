@@ -34,7 +34,7 @@ public class Inicio extends javax.swing.JFrame {
     PecasDAO dao = new PecasDAO();
     List<Gerenciapcs> lista = dao.listarpecas();
    
-     for(Gerenciapcs u : dao.listarpecas()){
+     for(Gerenciapcs u : lista){
 
         model.addRow(new Object[]{
 
