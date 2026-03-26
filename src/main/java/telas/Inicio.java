@@ -14,7 +14,6 @@ import model.PecasDAO;
  * @author Aluno
  */
 public class Inicio extends javax.swing.JFrame {
-    Conexao conn = new Conexao();
     DefaultTableModel model;
 
     /**
@@ -22,11 +21,10 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
     initComponents();
-    conn.testarconexao();
     OcuparTabela();
 }
     
-     public void OcuparTabela() {
+    public void OcuparTabela() {
         model = (DefaultTableModel) tbl.getModel();
   
          model.setRowCount(0);
@@ -78,7 +76,6 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("cadastrar");
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(

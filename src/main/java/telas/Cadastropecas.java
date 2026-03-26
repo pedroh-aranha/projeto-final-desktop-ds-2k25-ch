@@ -16,7 +16,6 @@ import model.PecasDAO;
  * @author Aluno
  */
 public class Cadastropecas extends javax.swing.JFrame {
-    Conexao conn = new Conexao();
      DefaultTableModel model;
 
     /**
@@ -24,7 +23,6 @@ public class Cadastropecas extends javax.swing.JFrame {
      */
     public Cadastropecas() {
         initComponents();
-        conn.testarconexao();
     }
     public void OcuparTabela() {
         model = (DefaultTableModel) tabela.getModel();
@@ -107,8 +105,8 @@ public class Cadastropecas extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("cod original");
 
-        sair.setBackground(new java.awt.Color(102, 102, 102));
-        sair.setForeground(new java.awt.Color(255, 255, 255));
+        sair.setBackground(new java.awt.Color(204, 204, 204));
+        sair.setForeground(new java.awt.Color(255, 0, 51));
         sair.setText("sair");
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,10 +158,11 @@ public class Cadastropecas extends javax.swing.JFrame {
                     .addComponent(cod, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adicionar)
-                    .addComponent(jLabel3)
-                    .addComponent(cod_orgnl, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cod_orgnl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(adicionar)
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

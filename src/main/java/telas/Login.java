@@ -14,13 +14,11 @@ import model.UsuarioDAO;
  * @author Aluno
  */
 public class Login extends javax.swing.JFrame {
-    Conexao conn = new Conexao();
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        conn.testarconexao();
     }
 
     /**
@@ -158,9 +156,13 @@ public class Login extends javax.swing.JFrame {
             UsuarioDAO dao = new UsuarioDAO();
             UsuarioBean UsuarioLogado = dao.logar(currentUser, currentSenha);
             if(UsuarioLogado.getId() >0){
-                
-                new Inicio().setVisible(true);
-                this.setVisible(false);
+                if(UsuarioLogado.isAdmin()) {
+                    new Telaadm().setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    new Inicio().setVisible(true);
+                    this.setVisible(false);
+                }
             }
         }
     }//GEN-LAST:event_acessarActionPerformed
