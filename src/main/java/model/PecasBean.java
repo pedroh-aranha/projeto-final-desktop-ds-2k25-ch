@@ -2,26 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerenciarpecas;
+package model;
 
 /**
  *
  * @author Aluno
  */
-public class Gerenciapcs {
+public class PecasBean {
     private int id;
     private String nome;
     private int cod;
     private String cod_orgnl;
-
-    public Gerenciapcs() {
+    private int qntde;
+    
+    public PecasBean() {
     }
 
-    public Gerenciapcs(int id, String nome, int cod, String cod_orgnl) {
+    public PecasBean(int id, String nome, int cod, String cod_orgnl, int qntde) {
         this.id = id;
         this.nome = nome;
         this.cod = cod;
         this.cod_orgnl = cod_orgnl;
+        this.qntde = qntde;
     }
 
     public int getId() {
@@ -54,6 +56,14 @@ public class Gerenciapcs {
 
     public void setCod_orgnl(String cod_orgnl) {
         this.cod_orgnl = cod_orgnl;
+    }
+
+    public int getQntde() {
+        return qntde;
+    }
+
+    public void setQntde(int qntde) {
+        this.qntde = qntde;
     }
 
     

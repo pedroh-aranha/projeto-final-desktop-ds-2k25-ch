@@ -5,7 +5,7 @@
 package telas;
 
 import conexao.Conexao;
-import gerenciarpecas.Gerenciapcs;
+import model.PecasBean;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.PecasDAO;
@@ -30,17 +30,17 @@ public class Inicio extends javax.swing.JFrame {
          model.setRowCount(0);
    
     PecasDAO dao = new PecasDAO();
-    List<Gerenciapcs> lista = dao.listarpecas();
+    List<PecasBean> lista = dao.listarpecas();
    
-     for(Gerenciapcs u : lista){
+     for(PecasBean u : lista){
 
         model.addRow(new Object[]{
 
             u.getId(),
             u.getCod(),
             u.getNome(),
-            u.getCod_orgnl()
-
+            u.getCod_orgnl(),
+            u.getQntde()
         });
     }
 }
@@ -62,8 +62,9 @@ public class Inicio extends javax.swing.JFrame {
         tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -83,7 +84,7 @@ public class Inicio extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "cod", "nome", "cod orgnl"
+                "id", "cod", "nome", "cod orgnl", "quantidade"
             }
         ));
         jScrollPane1.setViewportView(tbl);
@@ -140,6 +141,7 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

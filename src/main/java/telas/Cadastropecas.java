@@ -4,7 +4,7 @@
  */
 package telas;
 
-import gerenciarpecas.Gerenciapcs;
+import model.PecasBean;
 import java.util.List;
 import conexao.Conexao;
 import javax.swing.JOptionPane;
@@ -30,9 +30,9 @@ public class Cadastropecas extends javax.swing.JFrame {
          model.setRowCount(0);
    
     PecasDAO dao = new PecasDAO();
-    List<Gerenciapcs> lista = dao.listarpecas();
+    List<PecasBean> lista = dao.listarpecas();
    
-    for (Gerenciapcs t : lista) {
+    for (PecasBean t : lista) {
         model.addRow(new Object[]{
             t.getId(),
             t.getCod(),
@@ -62,8 +62,11 @@ public class Cadastropecas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         sair = new javax.swing.JButton();
+        qntde = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -82,7 +85,7 @@ public class Cadastropecas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "cod", "nome", "cod orgnl"
+                "id", "cod", "nome", "cod orgnl", "qntde"
             }
         ));
         jScrollPane1.setViewportView(tabela);
@@ -114,6 +117,16 @@ public class Cadastropecas extends javax.swing.JFrame {
             }
         });
 
+        qntde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qntdeActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("quantidade");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,17 +142,23 @@ public class Cadastropecas extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cod_orgnl, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
                                 .addComponent(jLabel3))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel2)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jLabel2)))
+                                .addGap(56, 56, 56)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(qntde, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel4)))))))
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -154,9 +173,15 @@ public class Cadastropecas extends javax.swing.JFrame {
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cod, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cod, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(qntde)
+                            .addComponent(jLabel4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cod_orgnl, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -182,6 +207,7 @@ public class Cadastropecas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
@@ -202,16 +228,22 @@ public class Cadastropecas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "codigo de busca");
         }else if(cod_orgnl.getText().equals("")){
             JOptionPane.showMessageDialog(null, "codigo original");
+        }else if(qntde.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "quantidade");
         }
         else{
         PecasDAO dao = new PecasDAO();
-        Gerenciapcs currentGerenciapcs = new Gerenciapcs(0, nome.getText() , Integer.parseInt(cod.getText()), cod_orgnl.getText());
+        PecasBean currentGerenciapcs = new PecasBean(0, nome.getText() , Integer.parseInt(cod.getText()), cod_orgnl.getText(), Integer.parseInt(qntde.getText()));
         dao.inserir_peca(currentGerenciapcs);
         JOptionPane.showMessageDialog(null, "Tarefa adicionada com Sucesso!");
         }
         
         OcuparTabela();
     }//GEN-LAST:event_adicionarActionPerformed
+
+    private void qntdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qntdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_qntdeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,9 +287,11 @@ public class Cadastropecas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nome;
+    private javax.swing.JTextField qntde;
     private javax.swing.JButton sair;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
