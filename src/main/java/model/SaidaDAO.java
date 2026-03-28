@@ -8,6 +8,10 @@ package model;
  *
  * @author Aluno
  */
-public class UserDao {
+public class SaidaDAO {
+    
+    public SaidaDAO() {
+    
+}
     
 }

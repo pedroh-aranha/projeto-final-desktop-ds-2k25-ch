@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -46,51 +46,51 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="enviar" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace pref="355" max="32767" attributes="0"/>
-                          <Component id="limpar" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="qntde" pref="188" max="32767" attributes="0"/>
+                          <Component id="idosentrada" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="qntde" pref="188" max="32767" attributes="0"/>
-                              <Component id="cod" max="32767" attributes="0"/>
-                              <Component id="id" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="nome" max="32767" attributes="0"/>
-                              <Component id="qmcompra" pref="249" max="32767" attributes="0"/>
-                              <Component id="data" max="32767" attributes="0"/>
-                          </Group>
+                      <Component id="enviar" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="139" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="limpar" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="nome" pref="249" max="32767" attributes="0"/>
+                          <Component id="data" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="qmcompra" min="-2" pref="249" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="qmcompra" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="id" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="idosentrada" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="data" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nome" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="cod" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="nome" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="data" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="qntde" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="qmcompra" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="129" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="enviar" pref="33" max="32767" attributes="0"/>
-                      <Component id="limpar" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="enviar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="limpar" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
               </Group>
@@ -98,11 +98,9 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="id">
+        <Component class="javax.swing.JTextField" name="idosentrada">
         </Component>
         <Component class="javax.swing.JTextField" name="qmcompra">
-        </Component>
-        <Component class="javax.swing.JTextField" name="cod">
         </Component>
         <Component class="javax.swing.JTextField" name="nome">
         </Component>
@@ -118,6 +116,14 @@
         <Component class="javax.swing.JButton" name="limpar">
           <Properties>
             <Property name="text" type="java.lang.String" value="limpar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="X"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -9,43 +9,33 @@ package model;
  * @author Aluno
  */
 public class SaidaBean {
-    private int id;
-    private int qmbaixa;
+    private int idossaida;
     private String data;
-    private String tipoveiculo;
-    private String placa;
+    private String veiculo;
     private int cod;
     private String nome;
+    private int saida;
     private int qntde;
 
     public SaidaBean() {
     }
 
-    public SaidaBean(int id, int qmbaixa, String data, String tipoveiculo, String placa, int cod, String nome, int qntde) {
-        this.id = id;
-        this.qmbaixa = qmbaixa;
+    public SaidaBean(int idossaida, String data, String veiculo, int cod, String nome, int saida, int qntde) {
+        this.idossaida = idossaida;
         this.data = data;
-        this.tipoveiculo = tipoveiculo;
-        this.placa = placa;
+        this.veiculo = veiculo;
         this.cod = cod;
         this.nome = nome;
+        this.saida = saida;
         this.qntde = qntde;
     }
 
-    public int getId() {
-        return id;
+    public int getIdossaida() {
+        return idossaida;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getQmbaixa() {
-        return qmbaixa;
-    }
-
-    public void setQmbaixa(int qmbaixa) {
-        this.qmbaixa = qmbaixa;
+    public void setIdossaida(int idossaida) {
+        this.idossaida = idossaida;
     }
 
     public String getData() {
@@ -56,20 +46,12 @@ public class SaidaBean {
         this.data = data;
     }
 
-    public String getTipoveiculo() {
-        return tipoveiculo;
+    public String getVeiculo() {
+        return veiculo;
     }
 
-    public void setTipoveiculo(String tipoveiculo) {
-        this.tipoveiculo = tipoveiculo;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setVeiculo(String veiculo) {
+        this.veiculo = veiculo;
     }
 
     public int getCod() {
@@ -88,6 +70,14 @@ public class SaidaBean {
         this.nome = nome;
     }
 
+    public int getSaida() {
+        return saida;
+    }
+
+    public void setSaida(int saida) {
+        this.saida = saida;
+    }
+
     public int getQntde() {
         return qntde;
     }
@@ -95,6 +85,6 @@ public class SaidaBean {
     public void setQntde(int qntde) {
         this.qntde = qntde;
     }
-    
-    
+
+   
 }
