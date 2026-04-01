@@ -7,6 +7,7 @@ package telas;
 import javax.swing.JOptionPane;
 import model.UsuarioBean;
 import model.UsuarioDAO;
+import model.UsuarioLogado;
 
 /**
  *
@@ -18,6 +19,13 @@ public class Cadastro extends javax.swing.JFrame {
      * Creates new form Cadastro
      */
     public Cadastro() {
+    if(UsuarioLogado.UsuarioLogado == null || UsuarioLogado.UsuarioLogado.isAdmin()){
+            JOptionPane.showMessageDialog(this,"faça login primeiro");
+            this.setVisible(false);
+            this.dispose();
+            new Login().setVisible(true);
+            return;
+        }
         initComponents();
     }
 

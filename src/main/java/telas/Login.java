@@ -42,6 +42,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("login");
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 

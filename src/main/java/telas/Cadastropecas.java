@@ -10,6 +10,7 @@ import conexao.Conexao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.PecasDAO;
+import model.UsuarioLogado;
 
 /**
  *
@@ -22,6 +23,13 @@ public class Cadastropecas extends javax.swing.JFrame {
      * Creates new form Cadastropecas
      */
     public Cadastropecas() {
+     if(UsuarioLogado.UsuarioLogado == null || UsuarioLogado.UsuarioLogado.isAdmin()){
+            JOptionPane.showMessageDialog(this,"faça login primeiro");
+            this.setVisible(false);
+            this.dispose();
+            new Login().setVisible(true);
+            return;
+        }
         initComponents();
     }
     public void OcuparTabela() {
@@ -66,6 +74,7 @@ public class Cadastropecas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("cadstro de peças");
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
