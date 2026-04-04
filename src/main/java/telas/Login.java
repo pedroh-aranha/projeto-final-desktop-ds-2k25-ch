@@ -44,7 +44,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("login");
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         usuariolg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,15 +53,12 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("senha:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("usuario:");
 
         acessar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        acessar.setForeground(new java.awt.Color(153, 255, 255));
         acessar.setText("acessar");
         acessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +67,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("         login");
 
         senhalg.addActionListener(new java.awt.event.ActionListener() {
@@ -158,15 +154,11 @@ public class Login extends javax.swing.JFrame {
             UsuarioDAO dao = new UsuarioDAO();
             UsuarioBean UsuarioLogado = dao.logar(currentUser, currentSenha);
             if(UsuarioLogado.getId() >0){
-                if(UsuarioLogado.isAdmin()) {
-                    new Telaadm().setVisible(true);
-                    this.setVisible(false);
-                } else {
+              
                     new Inicio().setVisible(true);
                     this.setVisible(false);
                 }
             }
-        }
     }//GEN-LAST:event_acessarActionPerformed
 
     private void senhalgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhalgActionPerformed

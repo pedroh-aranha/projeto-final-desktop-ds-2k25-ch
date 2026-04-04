@@ -7,7 +7,6 @@ package telas;
 import javax.swing.JOptionPane;
 import model.UsuarioBean;
 import model.UsuarioDAO;
-import model.UsuarioLogado;
 
 /**
  *
@@ -19,13 +18,7 @@ public class Cadastro extends javax.swing.JFrame {
      * Creates new form Cadastro
      */
     public Cadastro() {
-    if(UsuarioLogado.UsuarioLogado == null || UsuarioLogado.UsuarioLogado.isAdmin()){
-            JOptionPane.showMessageDialog(this,"faça login primeiro");
-            this.setVisible(false);
-            this.dispose();
-            new Login().setVisible(true);
-            return;
-        }
+   
         initComponents();
     }
 
@@ -47,7 +40,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cadastrar = new javax.swing.JButton();
         senhacdt = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
+        voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,12 +82,12 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 51));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("X");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        voltar.setBackground(new java.awt.Color(255, 0, 51));
+        voltar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        voltar.setText("X");
+        voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                voltarActionPerformed(evt);
             }
         });
 
@@ -122,7 +115,7 @@ public class Cadastro extends javax.swing.JFrame {
                             .addGap(370, 370, 370)
                             .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(voltar)
                 .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,7 +127,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jButton2)))
+                        .addComponent(voltar)))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,11 +188,10 @@ public class Cadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
         // TODO add your handling code here:
-        new Telaadm().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,7 +230,6 @@ public class Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastrar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -247,5 +238,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextField nome;
     private javax.swing.JPasswordField senhacdt;
     private javax.swing.JTextField usuariocdt;
+    private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }
