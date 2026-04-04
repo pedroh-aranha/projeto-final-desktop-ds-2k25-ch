@@ -3,39 +3,41 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
-
-import conexao.Conexao;
+ 
 import model.PecasBean;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.PecasDAO;
-/**
- *
- * @author Aluno
- */
+ 
 public class Inicio extends javax.swing.JFrame {
     DefaultTableModel model;
-
-    /**
-     * Creates new form Inicio
-     */
-    public Inicio() {
-    initComponents();
-    OcuparTabela();
-}
-    
-    public void OcuparTabela() {
-        model = (DefaultTableModel) tbl.getModel();
-  
-         model.setRowCount(0);
-   
     PecasDAO dao = new PecasDAO();
+ 
+    public Inicio() {
+        initComponents();
+        OcuparTabela();
+        configurarTabelaAcoes();
+    }
+ 
+  public void OcuparTabela() {
+    // Sobrescrevemos o isCellEditable para retornar false em todas as células
+    model = new DefaultTableModel(
+        new Object [][] {},
+        new String [] {"id", "cod", "nome", "cod orgnl", "quantidade"}
+    ) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // Torna a tabela não editável
+        }
+    };
+    
+    tbl.setModel(model); // Define o novo modelo na tabela
+    model.setRowCount(0);
+    
     List<PecasBean> lista = dao.listarpecas();
-   
-     for(PecasBean u : lista){
-
+    for (PecasBean u : lista) {
         model.addRow(new Object[]{
-
             u.getId(),
             u.getCod(),
             u.getNome(),
@@ -44,6 +46,63 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
 }
+ 
+    private void configurarTabelaAcoes() {
+        tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    editarPecaSelecionada();
+                }
+            }
+        });
+    }
+ 
+    private void editarPecaSelecionada() {
+    int linhaSelecionada = tbl.getSelectedRow();
+    if (linhaSelecionada == -1) return;
+
+    // pega dados da linha selecionada
+    int id      = (int) model.getValueAt(linhaSelecionada, 0);
+    int cod     = (int) model.getValueAt(linhaSelecionada, 1);
+    String nomeItem = (String) model.getValueAt(linhaSelecionada, 2);
+    String codOrgnl = (String) model.getValueAt(linhaSelecionada, 3);
+    int qntdeItem   = (int) model.getValueAt(linhaSelecionada, 4);
+
+    PecasBean peca = new PecasBean(id, nomeItem, cod, codOrgnl, qntdeItem);
+    
+   
+    Mudanca form = new Mudanca();
+    form.mostrarFormularioEdicao(peca);
+    form.setVisible(true);
+    
+    // Fecha a tela Inicio
+    this.dispose(); 
+}
+ 
+    private void deletarPecaSelecionada() {
+        int linhaSelecionada = tbl.getSelectedRow();
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione uma peça para deletar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+ 
+        int id   = (int) model.getValueAt(linhaSelecionada, 0);
+        String nome = (String) model.getValueAt(linhaSelecionada, 2);
+ 
+        int confirmacao = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja deletar a peça \"" + nome + "\"?",
+            "Confirmar exclusão",
+            JOptionPane.YES_NO_OPTION
+        );
+ 
+        if (confirmacao == JOptionPane.YES_OPTION) {
+            dao.deletar(id);
+            OcuparTabela(); // atualiza a tabela
+            JOptionPane.showMessageDialog(this, "Peça deletada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +134,15 @@ public class Inicio extends javax.swing.JFrame {
             new String [] {
                 "id", "cod", "nome", "cod orgnl", "quantidade"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbl);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
