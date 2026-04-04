@@ -67,8 +67,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("senha:");
 
-        cadastrar.setBackground(new java.awt.Color(0, 0, 0));
-        cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        cadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cadastrar.setText("cadastrar");
         cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +139,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(senhacdt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cadastrar)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
