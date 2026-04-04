@@ -118,5 +118,5 @@ public class PecasDAO {
             JOptionPane.showMessageDialog(null, "Erro ao validar banco: " + e.getMessage());
         }
         return ehAdmin;
-    }
+    } 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.PecasDAO;
+import model.UsuarioDAO;
  
 public class Inicio extends javax.swing.JFrame {
     DefaultTableModel model;
@@ -46,6 +47,8 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
 }
+  
+  
  
     private void configurarTabelaAcoes() {
         tbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,6 +106,38 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Peça deletada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
+    private void acessarrComAutenticacao() {
+        javax.swing.JTextField txtUsuario = new javax.swing.JTextField();
+        javax.swing.JPasswordField txtSenha = new javax.swing.JPasswordField();
+        Object[] message = {
+            "Usuário:", txtUsuario,
+            "Senha:", txtSenha
+        };
+
+        int opcao = JOptionPane.showConfirmDialog(
+            this, message, "Login Admin Requerido", JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (opcao == JOptionPane.OK_OPTION) {
+            String user = txtUsuario.getText().trim();
+            String pass = new String(txtSenha.getPassword()).trim();
+
+            if (user.isEmpty() || pass.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Preencha usuário e senha.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (dao.validarAdmin(user, pass)) {
+                new Cadastro().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "Acesso negado: usuário incorreto ou sem permissão de admin.", 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,6 +155,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         entrada = new javax.swing.JButton();
         saida = new javax.swing.JButton();
+        cadauser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("inicio");
@@ -165,6 +201,14 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        cadauser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cadauser.setText("cadastrar usuario");
+        cadauser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadauserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -175,14 +219,17 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(166, 166, 166)
-                        .addComponent(entrada)
-                        .addGap(116, 116, 116)
-                        .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(entrada)
+                .addGap(88, 88, 88)
+                .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cadauser)
+                .addGap(98, 98, 98))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +237,10 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(saida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(saida)
+                    .addComponent(cadauser))
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -236,6 +284,11 @@ public class Inicio extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_saidaActionPerformed
 
+    private void cadauserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadauserActionPerformed
+        // TODO add your handling code here:
+        acessarrComAutenticacao();
+    }//GEN-LAST:event_cadauserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,6 +325,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cadauser;
     private javax.swing.JButton entrada;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
