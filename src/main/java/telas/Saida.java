@@ -5,6 +5,10 @@
 package telas;
 
 import javax.swing.JOptionPane;
+import model.PecasBean;
+import model.PecasDAO;
+import model.SaidaBean;
+import model.SaidaDAO;
 
 /**
  *
@@ -17,8 +21,37 @@ public class Saida extends javax.swing.JFrame {
      */
     public Saida() {
         initComponents();
-    }
+    String dataHoje = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
+    data.setText(dataHoje);
 
+    SaidaDAO dao = new SaidaDAO();
+    idossaida.setText(String.valueOf(dao.proximoId()));
+
+    cod.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            buscarPecaSaida();
+        }
+    });
+}
+
+    private void buscarPecaSaida() {
+        String codStr = cod.getText().trim();
+        if (codStr.isEmpty()) return;
+        try {
+            int codInt = Integer.parseInt(codStr);
+            PecasDAO dao = new PecasDAO();
+            PecasBean peca = dao.buscarPorCod(codInt);
+            if (peca != null) {
+                nome.setText(peca.getNome());
+                qntde.setText(String.valueOf(peca.getQntde())); // estoque atual
+            } else {
+                JOptionPane.showMessageDialog(this, "Peça não encontrada!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código deve ser um número", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,6 +109,12 @@ public class Saida extends javax.swing.JFrame {
         limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 limparActionPerformed(evt);
+            }
+        });
+
+        idossaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idossaidaActionPerformed(evt);
             }
         });
 
@@ -228,20 +267,77 @@ public class Saida extends javax.swing.JFrame {
 
     private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
         // TODO add your handling code here:
-        idossaida.setText(null);
-        data.setText(null);
-        idusuario.setText(null);
-        veiculo.setText(null);
-        cod.setText(null);
-        nome.setText(null);
-        saida.setText(null);
-       
+        idossaida.setText("");
+        data.setText("");
+        idusuario.setText("");
+        veiculo.setText("");
+        cod.setText("");
+        nome.setText("");
+        saida.setText("");
+        qntde.setText("");
     }//GEN-LAST:event_limparActionPerformed
 
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
         // TODO add your handling code here:
-        
+        String dataStr    = data.getText().trim();
+        String veiculoStr = veiculo.getText().trim();
+        String codStr     = cod.getText().trim();
+        String nomeStr    = nome.getText().trim();
+        String saidaStr   = saida.getText().trim();
+        String qntdeStr   = qntde.getText().trim();
+        String usuarioStr = idusuario.getText().trim();
+
+        if (dataStr.isEmpty() || veiculoStr.isEmpty() || codStr.isEmpty() ||
+            nomeStr.isEmpty() || saidaStr.isEmpty() || usuarioStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhum campo pode estar vazio", "Erro", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int codInt   = Integer.parseInt(codStr);
+            int saidaInt = Integer.parseInt(saidaStr);
+            int qntdeInt = qntdeStr.isEmpty() ? 0 : Integer.parseInt(qntdeStr);
+
+            SaidaBean s = new SaidaBean(0, dataStr, veiculoStr, codInt, nomeStr, saidaInt, qntdeInt, usuarioStr);            
+
+            SaidaDAO dao = new SaidaDAO();
+            int idGerado = dao.registrarSaida(s);
+
+            if (idGerado != -1) {
+                idossaida.setText(String.valueOf(idGerado));
+                JOptionPane.showMessageDialog(this, "Saída registrada! ID: " + idGerado, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código e quantidade devem ser números", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_enviarActionPerformed
+
+    private void idossaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idossaidaActionPerformed
+        buscarSaida(); // só chama o método aqui
+    }
+
+    private void buscarSaida() {
+        String idStr = idossaida.getText().trim();
+        if (idStr.isEmpty()) return;
+        try {
+            int id = Integer.parseInt(idStr);
+            SaidaDAO dao = new SaidaDAO();
+            SaidaBean s = dao.buscarPorId(id);
+            if (s != null) {
+                data.setText(s.getData());
+                veiculo.setText(s.getVeiculo());
+                cod.setText(String.valueOf(s.getCod()));
+                nome.setText(s.getNome());
+                saida.setText(String.valueOf(s.getSaida()));
+                qntde.setText(String.valueOf(s.getQntde()));
+                idusuario.setText(s.getUsuario()); // ← faltava essa linha
+            } else {
+                JOptionPane.showMessageDialog(this, "Saída não encontrada!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID deve ser um número", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_idossaidaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,12 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+import model.EntradaBean;
+import model.EntradaDAO;
+import model.PecasBean;
+import model.PecasDAO;
+
 /**
  *
  * @author Aluno
@@ -14,7 +20,36 @@ public class Entrada extends javax.swing.JFrame {
      * Creates new form Entrada
      */
     public Entrada() {
-        initComponents();
+       initComponents();
+    String dataHoje = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
+    data.setText(dataHoje);
+
+    EntradaDAO dao = new EntradaDAO();
+    idosentrada.setText(String.valueOf(dao.proximoId()));
+
+    cod.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            buscarPecaEntrada();
+        }
+    });
+}
+
+    private void buscarPecaEntrada() {
+        String codStr = cod.getText().trim();
+        if (codStr.isEmpty()) return;
+        try {
+            int codInt = Integer.parseInt(codStr);
+            PecasDAO dao = new PecasDAO();
+            PecasBean peca = dao.buscarPorCod(codInt);
+            if (peca != null) {
+                nome.setText(peca.getNome());
+                cod_orgnl.setText(peca.getCod_orgnl());
+            } else {
+                JOptionPane.showMessageDialog(this, "Peça não encontrada!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código deve ser um número", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -48,11 +83,27 @@ public class Entrada extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        idosentrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idosentradaActionPerformed(evt);
+            }
+        });
+
         enviar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         enviar.setText("enviar");
+        enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarActionPerformed(evt);
+            }
+        });
 
         limpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         limpar.setText("limpar");
+        limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 0, 51));
         jButton1.setText("X");
@@ -172,6 +223,74 @@ public class Entrada extends javax.swing.JFrame {
         new Inicio().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
+        String dataStr  = data.getText().trim();
+        String codStr   = cod.getText().trim();
+        String nomeStr  = nome.getText().trim();
+        String codOrgnl = cod_orgnl.getText().trim();
+        String qntdeStr = qntde.getText().trim();
+
+        if (dataStr.isEmpty() || codStr.isEmpty() || nomeStr.isEmpty() ||
+            codOrgnl.isEmpty() || qntdeStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhum campo pode estar vazio", "Erro", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int codInt   = Integer.parseInt(codStr);
+            int qntdeInt = Integer.parseInt(qntdeStr);
+
+            EntradaBean entrada = new EntradaBean(0, dataStr, codInt, nomeStr, codOrgnl, qntdeInt);
+            EntradaDAO dao = new EntradaDAO();
+            int idGerado = dao.registrarEntrada(entrada);
+
+            if (idGerado != -1) {
+                idosentrada.setText(String.valueOf(idGerado));
+                JOptionPane.showMessageDialog(this, "Entrada registrada! ID: " + idGerado, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código e quantidade devem ser números", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_enviarActionPerformed
+
+    private void idosentradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idosentradaActionPerformed
+        // TODO add your handling code here:
+         buscarEntrada();
+    }
+
+    private void buscarEntrada() {
+        String idStr = idosentrada.getText().trim();
+        if (idStr.isEmpty()) return;
+        try {
+            int id = Integer.parseInt(idStr);
+            EntradaDAO dao = new EntradaDAO();
+            EntradaBean e = dao.buscarPorId(id);
+            if (e != null) {
+                data.setText(e.getData());
+                cod.setText(String.valueOf(e.getCod()));
+                nome.setText(e.getNome());
+                cod_orgnl.setText(e.getCod_orgnl());
+                qntde.setText(String.valueOf(e.getQntde()));
+            } else {
+                JOptionPane.showMessageDialog(this, "Entrada não encontrada!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "ID deve ser um número", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+    
+    }//GEN-LAST:event_idosentradaActionPerformed
+
+    private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
+        // TODO add your handling code here:
+        idosentrada.setText("");
+        data.setText("");
+        cod.setText("");
+        nome.setText("");
+        qntde.setText("");
+        cod_orgnl.setText("");
+    }//GEN-LAST:event_limparActionPerformed
 
     /**
      * @param args the command line arguments

@@ -156,6 +156,7 @@ public class Inicio extends javax.swing.JFrame {
         entrada = new javax.swing.JButton();
         saida = new javax.swing.JButton();
         cadauser = new javax.swing.JButton();
+        novoitem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("inicio");
@@ -209,6 +210,14 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        novoitem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        novoitem.setText("novo item");
+        novoitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoitemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -227,6 +236,8 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(entrada)
                 .addGap(88, 88, 88)
                 .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(novoitem, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cadauser)
                 .addGap(98, 98, 98))
@@ -240,7 +251,8 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(saida)
-                    .addComponent(cadauser))
+                    .addComponent(cadauser)
+                    .addComponent(novoitem))
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -289,6 +301,14 @@ public class Inicio extends javax.swing.JFrame {
         acessarrComAutenticacao();
     }//GEN-LAST:event_cadauserActionPerformed
 
+    private void novoitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoitemActionPerformed
+        // TODO add your handling code here:
+        Mudanca form = new Mudanca();
+        form.mostrarFormulario(true);
+        form.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_novoitemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -331,6 +351,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton novoitem;
     private javax.swing.JButton saida;
     private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
