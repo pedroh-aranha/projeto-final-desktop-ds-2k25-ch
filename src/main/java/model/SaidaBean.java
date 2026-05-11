@@ -16,11 +16,12 @@ public class SaidaBean {
     private String nome;
     private int saida;
     private int qntde;
+    private String usuario;
 
     public SaidaBean() {
     }
 
-    public SaidaBean(int idossaida, String data, String veiculo, int cod, String nome, int saida, int qntde) {
+    public SaidaBean(int idossaida, String data, String veiculo, int cod, String nome, int saida, int qntde, String usuario) {
         this.idossaida = idossaida;
         this.data = data;
         this.veiculo = veiculo;
@@ -28,6 +29,7 @@ public class SaidaBean {
         this.nome = nome;
         this.saida = saida;
         this.qntde = qntde;
+        this.usuario = usuario;
     }
 
     public int getIdossaida() {
@@ -86,5 +88,12 @@ public class SaidaBean {
         this.qntde = qntde;
     }
 
-   
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
 }

@@ -131,6 +131,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="idosentrada">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idosentradaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="nome">
         </Component>
@@ -145,6 +148,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="enviar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="limpar">
           <Properties>
@@ -153,6 +159,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="limpar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limparActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>

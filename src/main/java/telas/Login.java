@@ -141,23 +141,23 @@ public class Login extends javax.swing.JFrame {
 
     private void acessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarActionPerformed
         // TODO add your handling code here:
-        String currentUser = usuariolg.getText().trim();
+        String currentUser  = usuariolg.getText().trim();
         String currentSenha = senhalg.getText().trim();
-        
-        if(currentUser.equals ("")){
-            JOptionPane.showMessageDialog(null, "usuario ou senha incorreto");
-        } else if(currentSenha.equals ("")){
-            JOptionPane.showMessageDialog(null, "usuario ou senha incorreto");
-          }
-         else{
-            UsuarioDAO dao = new UsuarioDAO();
-            UsuarioBean UsuarioLogado = dao.logar(currentUser, currentSenha);
-            if(UsuarioLogado.getId() >0){
-              
-                    new Inicio().setVisible(true);
-                    this.setVisible(false);
-                }
-            }
+
+        if (currentUser.isEmpty() || currentSenha.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        UsuarioDAO dao = new UsuarioDAO();
+        UsuarioBean usuarioLogado = dao.logar(currentUser, currentSenha);
+
+        if (usuarioLogado.getId() > 0) {
+            new Inicio().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_acessarActionPerformed
 
     private void senhalgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhalgActionPerformed

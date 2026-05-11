@@ -119,4 +119,34 @@ public class PecasDAO {
         }
         return ehAdmin;
     } 
+    
+    public PecasBean buscarPorCod(int cod) {
+        PecasBean peca = null;
+        try {
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM items WHERE cod = ?"
+            );
+            stmt.setInt(1, cod);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                peca = new PecasBean();
+                peca.setId(rs.getInt("id"));
+                peca.setCod(rs.getInt("cod"));
+                peca.setNome(rs.getString("nome"));
+                peca.setCod_orgnl(rs.getString("cod_orgnl"));
+                peca.setQntde(rs.getInt("qntde"));
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+        return peca;
+    }
+    
 }
