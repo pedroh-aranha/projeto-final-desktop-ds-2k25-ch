@@ -20,6 +20,16 @@ public class Cadastro extends javax.swing.JFrame {
     public Cadastro() {
    
         initComponents();
+        
+    }
+    private boolean senhaValida(String senha) {
+    if (senha.length() < 8) return false;
+    
+    boolean temMaiuscula = senha.chars().anyMatch(Character::isUpperCase);
+    boolean temNumero    = senha.chars().anyMatch(Character::isDigit);
+    boolean temSimbolo   = senha.chars().anyMatch(c -> "!@#$%^&*()_+-=[]{}|;':\",./<>?".indexOf(c) >= 0);
+    
+    return temMaiuscula && temNumero && temSimbolo;
     }
 
     /**
@@ -166,7 +176,12 @@ public class Cadastro extends javax.swing.JFrame {
 // validação dos dados
         if ((nome.getText().isEmpty()) || (usuariocdt.getText().isEmpty()) || (senhacdt.getText().isEmpty())) { 
         JOptionPane.showMessageDialog(null, "nenhum campo pode estar vazio");
-        }
+        }   else if (!senhaValida(currentSenha)) {
+            JOptionPane.showMessageDialog(null, 
+                "A senha deve ter no mínimo 8 caracteres, uma letra maiúscula, um número e um símbolo!", 
+                "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+            }
         else {
             UsuarioDAO dao = new UsuarioDAO();
             UsuarioBean  usuarioCadastrado = new UsuarioBean(0, currentNome, currentUser, currentSenha, false);
